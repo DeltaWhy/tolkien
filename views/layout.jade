@@ -15,6 +15,10 @@ html
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   body
+    .container
+      .row
+        .col-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+          != messages('messages', locals)
     block content
     script(src='bower_components/jquery/dist/jquery.min.js')
     //script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
