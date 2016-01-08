@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var userParser = require('./user-parser');
 var login = require('./controllers/login');
+var profile = require('./controllers/profile');
 
 var db = require('monk')('localhost/tolkien-'+(process.env.NODE_ENV || 'development'));
 var users = db.get('users');
@@ -51,7 +52,7 @@ app.get('/register', function(req, res, next) {
 
 app.get('/profile', function(req, res, next) {
   if (req.user) {
-    res.render('profile', { title: 'Tolkien' });
+    res.render('profile', { title: 'Tolkien', user: req.user });
   } else {
     req.flash('warning', 'You are not logged in.');
     res.redirect('/login');
@@ -67,6 +68,7 @@ app.get('/forgot-password', function(req, res, next) {
 });
 
 app.post('/login', login);
+app.post('/profile', profile);
 app.post('/logout', function(req, res, next) {
   res.clearCookie('tolkien-auth');
   req.flash('success', 'Logged out.');
