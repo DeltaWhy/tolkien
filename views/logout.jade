@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+        .jumbotron(style='margin-top: 4em')
+          h1.text-center Log out
+          p.text-center Are you sure you want to log out?
+          form.inline-form(method='POST', action='/logout')
+            button.btn.btn-primary.btn-lg.center-block(type='submit') Log out

@@ -1,5 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    .row
+      .col-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+        .jumbotron(style='margin-top: 4em')
+          h1.text-center= title
+          img.img-thumbnail.img-responsive.center-block(width='20%', src='/images/logo.png', alt='Logo', style='margin-bottom: 1em')
+          form.clearfix(method='POST', action='/login')
+            .form-group
+              label.sr-only(for='username') Username
+              input.form-control.input-lg(type='text', placeholder='Username or email')
+            .form-group
+              label.sr-only(for='password') Password
+              input.form-control.input-lg(type='password', placeholder='Password')
+            button.btn.btn-success.btn-lg.pull-right(type='submit') Log in
+            div
+              a(href='/register') Register
+              |  | 
+              a(href='/forgot-password') Forgot password?

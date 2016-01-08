@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+        .jumbotron(style='margin-top: 4em')
+          h1.text-center Username
+          img.img-thumbnail.img-responsive.center-block(width='20%', src='http://www.gravatar.com/avatar/00000000000000000000000000000000?d=retro&s=256', alt='Avatar', style='margin-bottom: 1em')
+          form.inline-form(method='POST', action='/logout')
+            button.btn.btn-primary.btn-lg.center-block(type='submit') Log out
+          form.clearfix(method='POST', action='/profile')
+            h2 Your information
+            .form-group
+              label(for='name') Real name
+              input.form-control.input-lg(type='text', placeholder='Real name')
+            .form-group
+              label(for='email') Email
+              input.form-control.input-lg(type='email', placeholder='Email')
+            h2 Change password
+            .form-group
+              label(for='current-password') Current password
+              input.form-control.input-lg(type='password', placeholder='Current password')
+            .form-group
+              label(for='password') New password
+              input.form-control.input-lg(type='password', placeholder='New password')
+            .form-group
+              label(for='confirm-password') Confirm password
+              input.form-control.input-lg(type='password', placeholder='Confirm password')
+            button.btn.btn-success.btn-lg.pull-right(type='submit') Save changes

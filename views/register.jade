@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container
+    .row
+      .col-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+        .jumbotron(style='margin-top: 4em')
+          h1.text-center Register
+          img.img-thumbnail.img-responsive.center-block(width='20%', src='/images/logo.png', alt='Logo', style='margin-bottom: 1em')
+          form.clearfix(method='POST', action='/register')
+            .form-group
+              label(for='username') Username
+              input.form-control.input-lg(type='text', placeholder='Username')
+            .form-group
+              label(for='name') Real name
+              input.form-control.input-lg(type='text', placeholder='Real name')
+            .form-group
+              label(for='email') Email
+              input.form-control.input-lg(type='email', placeholder='Email')
+            .form-group
+              label(for='password') Password
+              input.form-control.input-lg(type='password', placeholder='Password')
+            .form-group
+              label(for='confirm-password') Confirm password
+              input.form-control.input-lg(type='password', placeholder='Confirm password')
+            button.btn.btn-success.btn-lg.pull-right(type='submit') Register
+            div
+              a(href='/') Already have an account?

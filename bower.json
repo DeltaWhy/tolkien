@@ -1,0 +1,27 @@
+{
+  "name": "tolkien",
+  "description": "One account to rule them all",
+  "main": "",
+  "authors": [
+    "Michael Limiero"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "authentication",
+    "microservice",
+    "auth",
+    "jwt"
+  ],
+  "homepage": "https://github.com/DeltaWhy/tolkien",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
