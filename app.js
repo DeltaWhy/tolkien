@@ -5,9 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -22,8 +19,29 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.get('/', function(req, res, next) {
+  res.render('index', { title: 'Tolkien' });
+});
+
+app.get('/login', function(req, res, next) {
+  res.render('index', { title: 'Tolkien' });
+});
+
+app.get('/register', function(req, res, next) {
+  res.render('register', { title: 'Tolkien' });
+});
+
+app.get('/profile', function(req, res, next) {
+  res.render('profile', { title: 'Tolkien' });
+});
+
+app.get('/logout', function(req, res, next) {
+  res.render('logout', { title: 'Tolkien' });
+});
+
+app.get('/forgot-password', function(req, res, next) {
+  res.render('forgot-password', { title: 'Tolkien' });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
