@@ -43,7 +43,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/login', function(req, res, next) {
-  res.render('index', { title: 'Tolkien' });
+  res.render('login', { title: 'Tolkien' });
 });
 
 app.get('/register', function(req, res, next) {
