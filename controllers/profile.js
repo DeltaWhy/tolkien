@@ -1,6 +1,3 @@
-var db = require('monk')('localhost/tolkien-'+(process.env.NODE_ENV || 'development'));
-var users = db.get('users');
-
 module.exports = function(req, res, next) {
   var newUser = req.user;
   if (req.body['new-password'] || req.body['confirm-password']) {
@@ -26,16 +23,17 @@ module.exports = function(req, res, next) {
 function updateUser(req, res, next, newUser) {
   var update = {name: newUser.name, email: newUser.email};
   if (newUser.password) update.password = newUser.password;
-  users.update({username: req.user.username}, {$set: update})
-      .success(function(result) {
-    if (result === 1) {
-      res.cookie('tolkien-auth', newUser);
-      req.flash('success', 'Profile updated.');
-      res.redirect('/profile');
-    } else {
-      throw 'DB error on profile update';
+  req.app.db.collection('users').updateOne({username: req.user.username}, {$set: update},
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      if (result.result.ok && result.modifiedCount === 1) {
+        res.cookie('tolkien-auth', newUser);
+        req.flash('success', 'Profile updated.');
+        res.redirect('/profile');
+      } else {
+        throw 'DB error on profile update';
+      }
     }
-  }).error(function(error) {
-    throw error;
-  });
+  );
 }

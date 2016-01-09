@@ -10,19 +10,19 @@ block content
           form.clearfix(method='POST', action='/register')
             .form-group
               label(for='username') Username
-              input.form-control.input-lg(type='text', placeholder='Username')
+              input#username.form-control.input-lg(type='text', name='username', placeholder='Username', value=user.username)
             .form-group
               label(for='name') Real name
-              input.form-control.input-lg(type='text', placeholder='Real name')
+              input#name.form-control.input-lg(type='text', name='name', placeholder='Real name', value=user.name)
             .form-group
               label(for='email') Email
-              input.form-control.input-lg(type='email', placeholder='Email')
+              input#email.form-control.input-lg(type='email', name='email', placeholder='Email', value=user.email)
             .form-group
               label(for='password') Password
-              input.form-control.input-lg(type='password', placeholder='Password')
+              input#password.form-control.input-lg(type='password', name='password', placeholder='Password')
             .form-group
               label(for='confirm-password') Confirm password
-              input.form-control.input-lg(type='password', placeholder='Confirm password')
+              input#confirm-password.form-control.input-lg(type='password', name='confirm-password', placeholder='Confirm password')
             button.btn.btn-success.btn-lg.pull-right(type='submit') Register
             div
               a(href='/') Already have an account?

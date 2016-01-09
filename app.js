@@ -8,11 +8,19 @@ var bodyParser = require('body-parser');
 var userParser = require('./user-parser');
 var login = require('./controllers/login');
 var profile = require('./controllers/profile');
+var register = require('./controllers/register');
 
-var db = require('monk')('localhost/tolkien-'+(process.env.NODE_ENV || 'development'));
-var users = db.get('users');
+var MongoClient = require('mongodb').MongoClient;
 
 var app = express();
+
+MongoClient.connect('mongodb://localhost:27017/tolkien-'
+    + (process.env.NODE_ENV || 'development')
+    , function(err, db) {
+      if (err) throw err;
+      console.log('Connected to DB');
+      app.db = db;
+    });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('secret'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 app.use(session({cookie: { maxAge: 60000 }}));
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
@@ -69,6 +78,7 @@ app.get('/forgot-password', function(req, res, next) {
 
 app.post('/login', login);
 app.post('/profile', profile);
+app.post('/register', register);
 app.post('/logout', function(req, res, next) {
   res.clearCookie('tolkien-auth');
   req.flash('success', 'Logged out.');
